@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/geral.css">
+    <title>Relatório Geral</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">QUEM SOMOS</a>
+            <a href="tudo-sobre.html">TUDO SOBRE O PROJETO</a>
+            <a href="relatorio-geral.html">RELATÓRIO GERAL</a>
+            <a href="maquinarios.html">MAQUINÁRIOS</a>
+        </nav>    
+    </header>
+
+    <h1>RELATÓRIO GERAL BASEADO EM MÉDIAS</h1>
+
+    <!-- Alerta Dinâmico -->
+    <div id="alert" class="alert green">
+        ALERTA VERDE: TUDO SOB CONTROLE!
+    </div>
+
+    <!-- Contador -->
+    <div class="counter">
+        <div><span id="days">00</span><br>Dias</div>
+        <div>:</div>
+        <div><span id="hours">00</span><br>Horas</div>
+        <div>:</div>
+        <div><span id="minutes">00</span><br>Minutos</div>
+        <div>:</div>
+        <div><span id="seconds">00</span><br>Segundos</div>
+    </div>
+
+    <!-- Seção do Gráfico -->
+    <div class="chart-section">
+        <div id="chartContainer">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="metrics">
+            <p id="tempDisplay">16°C<br>Temperatura</p>
+            <p id="humidityDisplay">30%<br>Umidade</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="rodape1">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">YouTube</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+        </div>
+        <div class="rodape2">
+            <div class="esquerda">
+                <p>EDIFÍCIO SEDE FIESP</p>
+                <p>Av. Paulista, 1313, São Paulo/SP <br> CEP 01311-923</p>
+            </div>
+            <div class="direita">
+                <p>Central de Relacionamento: (11) 3322-0050 (Telefone/WhatsApp)</p>
+                <p>0800-055-1000 (Interior de SP, somente telefone fixo)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicialização do contador
+        // Defina a data de início (pode ser a data atual ou outra data específica)
+        const startDate = new Date("2024-10-26T23:40:00"); // Ajuste para a data inicial desejada
+
+        // Função de atualização do contador para contar para cima
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate; // Tempo decorrido desde a data de início
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+        
+        // Atualiza o contador a cada segundo
+        setInterval(updateCounter, 1000);
+        // Dados de temperatura e umidade
+        let temperature = 16;
+        let humidity = 30;
+
+        // Função para atualizar o alerta com base nos dados
+        function updateAlert() {
+            const alertBox = document.getElementById('alert');
+
+            if (temperature < 18 && humidity < 50) {
+                alertBox.className = 'alert green';
+                alertBox.textContent = 'ALERTA VERDE: TUDO SOB CONTROLE!';
+            } else if ((temperature >= 18 && temperature < 24) || (humidity >= 50 && humidity < 70)) {
+                alertBox.className = 'alert yellow';
+                alertBox.textContent = 'ALERTA AMARELO: ATENÇÃO PARA POSSÍVEIS AJUSTES!';
+            } else {
+                alertBox.className = 'alert red';
+                alertBox.textContent = 'ALERTA VERMELHO: CONDIÇÕES CRÍTICAS!';
+            }
+            
+            // Atualizar exibição de temperatura e umidade
+            document.getElementById('tempDisplay').innerHTML = `${temperature}°C<br>Temperatura`;
+            document.getElementById('humidityDisplay').innerHTML = `${humidity}%<br>Umidade`;
+        }
+
+        // Configuração do gráfico usando Chart.js
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Temperatura', 'Umidade'],
+                datasets: [{
+                    data: [temperature, humidity],
+                    backgroundColor: ['#9CD787', '#F69148'],
+                    hoverBackgroundColor: ['#9CD787', '#F69148']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                cutout: '70%'
+            }
+        });
+
+        // Simulação de atualização de dados
+        function simulateDataUpdate() {
+            temperature = Math.floor(Math.random() * 30);
+            humidity = Math.floor(Math.random() * 100);
+
+            // Atualizar o gráfico
+            myChart.data.datasets[0].data = [temperature, humidity];
+            myChart.update();
+
+            // Atualizar o alerta
+            updateAlert();
+        }
+
+        // Atualizar dados a cada 5 segundos
+        setInterval(simulateDataUpdate, 5000);
+    </script>
+</body>
+</html>
