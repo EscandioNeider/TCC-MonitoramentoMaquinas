@@ -8,4 +8,4 @@ Este é o site do nosso Trabalho de Conclusão de Curso (TCC), desenvolvido em c
 - MAQUINÁRIOS - EM ANDAMENTO.
 
 
-Acesse o site e explore nossa solução: (https://escandioneider.github.io/TCC-MonitoramentoMaquinas/)
+Acesse o site e explore nossa solução https://escandioneider.github.io/Tcc/

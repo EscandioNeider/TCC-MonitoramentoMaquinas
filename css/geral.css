@@ -159,7 +159,10 @@ h1 {
 
 /* MAQUINÁRIOS */
 .container{
-    display: flex;
+    transform: translate(20%, 0%);
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, minmax(150px, 2fr));
     justify-content: center;
     align-items: center;
     
@@ -169,19 +172,19 @@ h1 {
     height: 200px;
     color: #ffffff;
     text-align: center;
-    background-color: #b12224d8;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    padding-top: 30px;
 }
 
 /* início da estilização dos botões */
 /* From Uiverse.io by mobinkakei */ 
 .btn {
     width: 140px;
-    height: 50px;
+    height: 15vh;
     background: linear-gradient(to top, #4c0000, #6e1212, #7f2323);
     color: #fff;
-    border-radius: 50px;
+    border-radius: 5px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -245,11 +248,16 @@ h1 {
     padding: 10px 20px;
     font-size: 18px;
     text-align: center;
+    height: 25vh;
 }
 footer {
     background-color: #8d747656;
 }
+#foot {
+    height: 15vh;
+}
 .esquerda, .direita {
+    margin: 55px;
     text-align: center;
     max-width: 45%;
 }
