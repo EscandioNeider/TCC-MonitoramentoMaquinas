@@ -39,6 +39,7 @@ h1 {
 }
 .team-member {
     text-align: center;
+    background-size: cover;
 }
 .team-member img {
     border-radius: 50%;
@@ -120,15 +121,52 @@ h1 {
     font-size: 28px;
     margin-top: 20px;
 }
-.alert {
-    background-color: #c0e3c3;
-    color: #4a7c48;
+.alerta-verde, .alerta-amarelo, .alerta-vermelho{
     padding: 15px;
     font-size: 18px;
     max-width: 600px;
     margin: 20px auto;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
+
+.alerta-verde{
+    background-color: #C2EBB4;
+    color: #1F7600;
+}
+
+.alerta-amarelo{
+    background-color: #F6F5C7;
+    color: #6B6D00;
+
+}
+
+.alerta-vermelho{
+    background-color: #D9A0A0;
+    color: #8C0707;
+
+}
+
+.titulo{
+    text-align: center;
+    align-items: center;
+}
+
+.condicoes-text{
+    text-align: center;
+    align-items: center;
+}
+
+.acoes-text{
+    text-align: justify;
+}
+
+.subtitulo{
+    text-align: center;
+    align-items: center;
+}
+
 .counter {
     display: flex;
     justify-content: center;
@@ -159,10 +197,8 @@ h1 {
 
 /* MAQUINÁRIOS */
 .container{
-    transform: translate(20%, 0%);
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(2, minmax(150px, 2fr));
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     

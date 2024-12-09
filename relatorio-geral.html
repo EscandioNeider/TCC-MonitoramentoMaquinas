@@ -17,32 +17,97 @@
         </nav>    
     </header>
 
-    <h1>RELATÓRIO GERAL BASEADO EM MÉDIAS</h1>
+    <div class="esquerda-relatorio">
+        <h1>RELATÓRIO GERAL BASEADO EM MÉDIAS</h1>
 
-    <!-- Alerta Dinâmico -->
-    <div id="alert" class="alert green">
-        ALERTA VERDE: TUDO SOB CONTROLE!
-    </div>
-
-    <!-- Contador -->
-    <div class="counter">
-        <div><span id="days">00</span><br>Dias</div>
-        <div>:</div>
-        <div><span id="hours">00</span><br>Horas</div>
-        <div>:</div>
-        <div><span id="minutes">00</span><br>Minutos</div>
-        <div>:</div>
-        <div><span id="seconds">00</span><br>Segundos</div>
-    </div>
-
-    <!-- Seção do Gráfico -->
-    <div class="chart-section">
-        <div id="chartContainer">
-            <canvas id="myChart"></canvas>
+        <!-- Contador -->
+        <div class="counter">
+            <div><span id="days">00</span><br>Dias</div>
+            <div>:</div>
+            <div><span id="hours">00</span><br>Horas</div>
+            <div>:</div>
+            <div><span id="minutes">00</span><br>Minutos</div>
+            <div>:</div>
+            <div><span id="seconds">00</span><br>Segundos</div>
         </div>
-        <div class="metrics">
-            <p id="tempDisplay">16°C<br>Temperatura</p>
-            <p id="humidityDisplay">30%<br>Umidade</p>
+    
+        <!-- Seção do Gráfico -->
+        <div class="chart-section">
+            <div id="chartContainer">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="metrics">
+                <p id="tempDisplay">16°C<br>Temperatura</p>
+                <p id="humidityDisplay">30%<br>Umidade</p>
+            </div>
+        </div>    
+    </div>
+    
+
+    <div class="direita-relatorio">
+        <!-- ALERTAS -->
+        <!-- Alerta Verde -->
+        <div id="verde" class="alerta-verde">
+            <strong class="titulo">ALERTA VERDE: TUDO SOB CONTROLE!</strong> 
+            <br><br>
+            <strong class="subtitulo">Condições Atuais:</strong>
+            <br>
+            <span class="condicoes-text">A temperatura está abaixo de 18°C, e a umidade está inferior a 50%. Esses valores indicam um ambiente estável e seguro para os equipamentos ou sistemas monitorados.
+            <br>
+            Os parâmetros estão dentro dos níveis ideais, sem risco iminente de falhas ou degradação do desempenho. 
+            <br>
+            Nenhuma intervenção é necessária no momento, mas a monitoração contínua é essencial para manter esse status.</span>
+            <br><br>
+            <strong class="subtitulo">Ações Recomendada:</strong>
+            <br>
+            <span class="acoes-text">→ Continue acompanhando os dados regularmente. 
+            <br>
+            → Garanta que os sistemas de ventilação, refrigeração ou controle de umidade estejam funcionando adequadamente para manter as condições favoráveis.</span>
+        </div>
+ 
+        <!-- Alerta Amarelo -->
+        <div id="amarelo" class="alerta-amarelo">
+            <strong class="titulo">ALERTA AMARELO: MAIS ATENÇÃO!</strong>
+            <br><br>
+            <strong class="subtitulo">Condições Atuais:</strong>
+            <br>
+            <span class="condicoes-text">A temperatura está entre 18°C e 24°C, ou a umidade está entre 50% e 70%. Esses valores indicam um leve desvio dos parâmetros ideais, o que pode, a longo prazo, impactar o desempenho ou causar desgaste nos sistemas.
+            <br>
+            O sistema está em estado de atenção, e é necessário um acompanhamento mais próximo para evitar que os indicadores avancem para níveis críticos. 
+            <br>
+            Pequenas anomalias podem ser detectadas neste estágio.</span>
+            <br><br>
+            <strong class="subtitulo">Ações Recomendada:</strong>
+            <br>
+            <span class="acoes-text">→ Verifique o funcionamento de sistemas de controle, como ventiladores, desumidificadores ou aquecedores. 
+            <br>
+            → Realize ajustes manuais ou automáticos para trazer os valores de volta ao nível ideal. 
+            <br>
+            →  Planeje inspeções regulares para prevenir problemas futuros.</span>
+        </div>
+ 
+        <!-- Alerta Vermelho -->
+        <div id="vermelho" class="alerta-vermelho">
+            <strong class="titulo">ALERTA VERMELHO: RUMO AO ESTADO CRÍTICO!</strong>
+            <br><br>
+            <strong class="subtitulo">Condições Atuais:</strong>
+            <br>
+            <span class="condicoes-text">A temperatura ultrapassou 24°C, ou a umidade está acima de 70%. Esses valores estão fora dos limites seguros, indicando um alto risco de falha nos sistemas ou danos permanentes ao ambiente ou equipamentos monitorados.
+            <br>
+            O sistema está em estado crítico, e os parâmetros chegaram a níveis que podem comprometer a operação e segurança. 
+            <br>Se não forem tomadas medidas imediatas, problemas graves, como falhas mecânicas, superaquecimento ou corrosão, podem ocorrer.</span>
+            <br><br>
+            <strong class="subtitulo">Ações Recomendada:</strong>
+            <br>
+            <span class="acoes-text">→ Pare imediatamente operações críticas, se possível. 
+            <br>
+            → Inspecione os sistemas de controle de temperatura e umidade para identificar falhas. 
+            <br>
+            →  Implemente ações de contingência, como aumentar a ventilação, resfriamento ou uso de desumidificadores.
+            <br>
+            → Altere as configurações do sistema para evitar recorrência.
+            <br>
+            → Considere a manutenção preventiva e corretiva o quanto antes.</span>
         </div>
     </div>
 
@@ -94,25 +159,30 @@
         let temperature = 16;
         let humidity = 30;
 
-        // Função para atualizar o alerta com base nos dados
         function updateAlert() {
-            const alertBox = document.getElementById('alert');
-
+            const verde = document.getElementById('alerta-verde');
+            const amarelo = document.getElementById('alerta-amarelo');
+            const vermelho = document.getElementById('alerta-vermelho');
+        
+            // Esconder todos os alertas inicialmente
+            verde.style.display = 'none';
+            amarelo.style.display = 'none';
+            vermelho.style.display = 'none';
+        
+            // Determinar qual alerta exibir
             if (temperature < 18 && humidity < 50) {
-                alertBox.className = 'alert green';
-                alertBox.textContent = 'ALERTA VERDE: TUDO SOB CONTROLE!';
+                verde.style.display = 'block';
             } else if ((temperature >= 18 && temperature < 24) || (humidity >= 50 && humidity < 70)) {
-                alertBox.className = 'alert yellow';
-                alertBox.textContent = 'ALERTA AMARELO: ATENÇÃO PARA POSSÍVEIS AJUSTES!';
+                amarelo.style.display = 'block';
             } else {
-                alertBox.className = 'alert red';
-                alertBox.textContent = 'ALERTA VERMELHO: CONDIÇÕES CRÍTICAS!';
+                vermelho.style.display = 'block';
             }
-            
+        
             // Atualizar exibição de temperatura e umidade
             document.getElementById('tempDisplay').innerHTML = `${temperature}°C<br>Temperatura`;
             document.getElementById('humidityDisplay').innerHTML = `${humidity}%<br>Umidade`;
         }
+        
 
         // Configuração do gráfico usando Chart.js
         const ctx = document.getElementById('myChart').getContext('2d');
@@ -122,8 +192,8 @@
                 labels: ['Temperatura', 'Umidade'],
                 datasets: [{
                     data: [temperature, humidity],
-                    backgroundColor: ['#F5E2D7', '#F5AA82'],
-                    hoverBackgroundColor: ['#F5E2D7', '#F5AA82']
+                    backgroundColor: ['#F5E2D7', '#8C0707'],
+                    hoverBackgroundColor: ['#F5E2D7', '#8C0707']
                 }]
             },
             options: {
