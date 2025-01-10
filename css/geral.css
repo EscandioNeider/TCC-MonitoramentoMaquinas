@@ -115,13 +115,15 @@ h1 {
 }
 
 /* RELATÓRIO GERAL */
-h1 {
+#relatorio-geral h1 {
     text-align: center;
     color: #9b1c1e;
     font-size: 28px;
     margin-top: 20px;
 }
-.alerta-verde, .alerta-amarelo, .alerta-vermelho{
+#relatorio-geral .alerta-verde, 
+#relatorio-geral .alerta-amarelo, 
+#relatorio-geral .alerta-vermelho{
     padding: 15px;
     font-size: 18px;
     max-width: 600px;
@@ -131,43 +133,43 @@ h1 {
     flex-direction: column;
 }
 
-.alerta-verde{
+#relatorio-geral .alerta-verde{
     background-color: #C2EBB4;
     color: #1F7600;
 }
 
-.alerta-amarelo{
+#relatorio-geral .alerta-amarelo{
     background-color: #F6F5C7;
     color: #6B6D00;
 
 }
 
-.alerta-vermelho{
+#relatorio-geral .alerta-vermelho{
     background-color: #D9A0A0;
     color: #8C0707;
 
 }
 
-.titulo{
+#relatorio-geral .titulo{
     text-align: center;
     align-items: center;
 }
 
-.condicoes-text{
+#relatorio-geral .condicoes-text{
     text-align: center;
     align-items: center;
 }
 
-.acoes-text{
+#relatorio-geral .acoes-text{
     text-align: justify;
 }
 
-.subtitulo{
+#relatorio-geral .subtitulo{
     text-align: center;
     align-items: center;
 }
 
-.counter {
+#relatorio-geral .counter {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -175,10 +177,12 @@ h1 {
     font-size: 24px;
     color: #9b1c1e;
 }
-.counter div {
+
+#relatorio-geral .counter div {
     text-align: center;
 }
-.chart-section {
+
+#relatorio-geral .chart-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,10 +193,32 @@ h1 {
     width: 200px;
     height: 200px;
 }
-.metrics {
+#relatorio-geral .metrics {
     color: #9b1c1e;
     font-size: 24px;
     line-height: 1.5;
+}
+
+#relatorio-geral .conteiner-relatorio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: fit-content;
+}
+
+#relatorio-geral .esquerda-relatorio,
+#relatorio-geral .direita-relatorio {
+    padding: 10px;
+    flex: 1;  
+  
+}
+
+#relatorio-geral .esquerda-relatorio {
+    width: min-content;
+}
+
+#relatorio-geral .direita-relatorio {
+    width: min-content;
 }
 
 /* MAQUINÁRIOS */

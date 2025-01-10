@@ -7,7 +7,7 @@
     <title>Relatório Geral</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body id="relatorio-geral">
     <header>
         <nav>
             <a href="index.html">QUEM SOMOS</a>
@@ -16,98 +16,97 @@
             <a href="maquinarios.html">MAQUINÁRIOS</a>
         </nav>    
     </header>
-
-    <div class="esquerda-relatorio">
-        <h1>RELATÓRIO GERAL BASEADO EM MÉDIAS</h1>
-
-        <!-- Contador -->
-        <div class="counter">
-            <div><span id="days">00</span><br>Dias</div>
-            <div>:</div>
-            <div><span id="hours">00</span><br>Horas</div>
-            <div>:</div>
-            <div><span id="minutes">00</span><br>Minutos</div>
-            <div>:</div>
-            <div><span id="seconds">00</span><br>Segundos</div>
+    <h1>RELATÓRIO GERAL BASEADO EM MÉDIAS</h1>
+    <div class="conteiner-relatorio">
+        <div class="esquerda-relatorio">
+            <!-- ALERTAS -->
+            <!-- Alerta Verde -->
+            <div id="verde" class="alerta-verde">
+                <strong class="titulo">ALERTA VERDE: TUDO SOB CONTROLE!</strong> 
+                <br><br>
+                <strong class="subtitulo">Condições Atuais:</strong>
+                <br>
+                <span class="condicoes-text">A temperatura está abaixo de 18°C, e a umidade está inferior a 50%. Esses valores indicam um ambiente estável e seguro para os equipamentos ou sistemas monitorados.
+                <br>
+                Os parâmetros estão dentro dos níveis ideais, sem risco iminente de falhas ou degradação do desempenho. 
+                <br>
+                Nenhuma intervenção é necessária no momento, mas a monitoração contínua é essencial para manter esse status.</span>
+                <br><br>
+                <strong class="subtitulo">Ações Recomendada:</strong>
+                <br>
+                <span class="acoes-text">→ Continue acompanhando os dados regularmente. 
+                <br>
+                → Garanta que os sistemas de ventilação, refrigeração ou controle de umidade estejam funcionando adequadamente para manter as condições favoráveis.</span>
+            </div>
+     
+            <!-- Alerta Amarelo -->
+            <div id="amarelo" class="alerta-amarelo">
+                <strong class="titulo">ALERTA AMARELO: MAIS ATENÇÃO!</strong>
+                <br><br>
+                <strong class="subtitulo">Condições Atuais:</strong>
+                <br>
+                <span class="condicoes-text">A temperatura está entre 18°C e 24°C, ou a umidade está entre 50% e 70%. Esses valores indicam um leve desvio dos parâmetros ideais, o que pode, a longo prazo, impactar o desempenho ou causar desgaste nos sistemas.
+                <br>
+                O sistema está em estado de atenção, e é necessário um acompanhamento mais próximo para evitar que os indicadores avancem para níveis críticos. 
+                <br>
+                Pequenas anomalias podem ser detectadas neste estágio.</span>
+                <br><br>
+                <strong class="subtitulo">Ações Recomendada:</strong>
+                <br>
+                <span class="acoes-text">→ Verifique o funcionamento de sistemas de controle, como ventiladores, desumidificadores ou aquecedores. 
+                <br>
+                → Realize ajustes manuais ou automáticos para trazer os valores de volta ao nível ideal. 
+                <br>
+                →  Planeje inspeções regulares para prevenir problemas futuros.</span>
+            </div>
+     
+            <!-- Alerta Vermelho -->
+            <div id="vermelho" class="alerta-vermelho">
+                <strong class="titulo">ALERTA VERMELHO: RUMO AO ESTADO CRÍTICO!</strong>
+                <br><br>
+                <strong class="subtitulo">Condições Atuais:</strong>
+                <br>
+                <span class="condicoes-text">A temperatura ultrapassou 24°C, ou a umidade está acima de 70%. Esses valores estão fora dos limites seguros, indicando um alto risco de falha nos sistemas ou danos permanentes ao ambiente ou equipamentos monitorados.
+                <br>
+                O sistema está em estado crítico, e os parâmetros chegaram a níveis que podem comprometer a operação e segurança. 
+                <br>Se não forem tomadas medidas imediatas, problemas graves, como falhas mecânicas, superaquecimento ou corrosão, podem ocorrer.</span>
+                <br><br>
+                <strong class="subtitulo">Ações Recomendada:</strong>
+                <br>
+                <span class="acoes-text">→ Pare imediatamente operações críticas, se possível. 
+                <br>
+                → Inspecione os sistemas de controle de temperatura e umidade para identificar falhas. 
+                <br>
+                →  Implemente ações de contingência, como aumentar a ventilação, resfriamento ou uso de desumidificadores.
+                <br>
+                → Altere as configurações do sistema para evitar recorrência.
+                <br>
+                → Considere a manutenção preventiva e corretiva o quanto antes.</span>
+            </div>
         </div>
     
-        <!-- Seção do Gráfico -->
-        <div class="chart-section">
-            <div id="chartContainer">
-                <canvas id="myChart"></canvas>
+        <div class="direita-relatorio">
+            <!-- Contador -->
+            <div class="counter">
+                <div><span id="days">00</span><br>Dias</div>
+                <div>:</div>
+                <div><span id="hours">00</span><br>Horas</div>
+                <div>:</div>
+                <div><span id="minutes">00</span><br>Minutos</div>
+                <div>:</div>
+                <div><span id="seconds">00</span><br>Segundos</div>
             </div>
-            <div class="metrics">
-                <p id="tempDisplay">16°C<br>Temperatura</p>
-                <p id="humidityDisplay">30%<br>Umidade</p>
-            </div>
-        </div>    
-    </div>
-    
-
-    <div class="direita-relatorio">
-        <!-- ALERTAS -->
-        <!-- Alerta Verde -->
-        <div id="verde" class="alerta-verde">
-            <strong class="titulo">ALERTA VERDE: TUDO SOB CONTROLE!</strong> 
-            <br><br>
-            <strong class="subtitulo">Condições Atuais:</strong>
-            <br>
-            <span class="condicoes-text">A temperatura está abaixo de 18°C, e a umidade está inferior a 50%. Esses valores indicam um ambiente estável e seguro para os equipamentos ou sistemas monitorados.
-            <br>
-            Os parâmetros estão dentro dos níveis ideais, sem risco iminente de falhas ou degradação do desempenho. 
-            <br>
-            Nenhuma intervenção é necessária no momento, mas a monitoração contínua é essencial para manter esse status.</span>
-            <br><br>
-            <strong class="subtitulo">Ações Recomendada:</strong>
-            <br>
-            <span class="acoes-text">→ Continue acompanhando os dados regularmente. 
-            <br>
-            → Garanta que os sistemas de ventilação, refrigeração ou controle de umidade estejam funcionando adequadamente para manter as condições favoráveis.</span>
-        </div>
- 
-        <!-- Alerta Amarelo -->
-        <div id="amarelo" class="alerta-amarelo">
-            <strong class="titulo">ALERTA AMARELO: MAIS ATENÇÃO!</strong>
-            <br><br>
-            <strong class="subtitulo">Condições Atuais:</strong>
-            <br>
-            <span class="condicoes-text">A temperatura está entre 18°C e 24°C, ou a umidade está entre 50% e 70%. Esses valores indicam um leve desvio dos parâmetros ideais, o que pode, a longo prazo, impactar o desempenho ou causar desgaste nos sistemas.
-            <br>
-            O sistema está em estado de atenção, e é necessário um acompanhamento mais próximo para evitar que os indicadores avancem para níveis críticos. 
-            <br>
-            Pequenas anomalias podem ser detectadas neste estágio.</span>
-            <br><br>
-            <strong class="subtitulo">Ações Recomendada:</strong>
-            <br>
-            <span class="acoes-text">→ Verifique o funcionamento de sistemas de controle, como ventiladores, desumidificadores ou aquecedores. 
-            <br>
-            → Realize ajustes manuais ou automáticos para trazer os valores de volta ao nível ideal. 
-            <br>
-            →  Planeje inspeções regulares para prevenir problemas futuros.</span>
-        </div>
- 
-        <!-- Alerta Vermelho -->
-        <div id="vermelho" class="alerta-vermelho">
-            <strong class="titulo">ALERTA VERMELHO: RUMO AO ESTADO CRÍTICO!</strong>
-            <br><br>
-            <strong class="subtitulo">Condições Atuais:</strong>
-            <br>
-            <span class="condicoes-text">A temperatura ultrapassou 24°C, ou a umidade está acima de 70%. Esses valores estão fora dos limites seguros, indicando um alto risco de falha nos sistemas ou danos permanentes ao ambiente ou equipamentos monitorados.
-            <br>
-            O sistema está em estado crítico, e os parâmetros chegaram a níveis que podem comprometer a operação e segurança. 
-            <br>Se não forem tomadas medidas imediatas, problemas graves, como falhas mecânicas, superaquecimento ou corrosão, podem ocorrer.</span>
-            <br><br>
-            <strong class="subtitulo">Ações Recomendada:</strong>
-            <br>
-            <span class="acoes-text">→ Pare imediatamente operações críticas, se possível. 
-            <br>
-            → Inspecione os sistemas de controle de temperatura e umidade para identificar falhas. 
-            <br>
-            →  Implemente ações de contingência, como aumentar a ventilação, resfriamento ou uso de desumidificadores.
-            <br>
-            → Altere as configurações do sistema para evitar recorrência.
-            <br>
-            → Considere a manutenção preventiva e corretiva o quanto antes.</span>
+        
+            <!-- Seção do Gráfico -->
+            <div class="chart-section">
+                <div id="chartContainer">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="metrics">
+                    <p id="tempDisplay">16°C<br>Temperatura</p>
+                    <p id="humidityDisplay">30%<br>Umidade</p>
+                </div>
+            </div>    
         </div>
     </div>
 
@@ -133,93 +132,145 @@
     </footer>
 
     <script>
-        // Inicialização do contador
-        // Defina a data de início (pode ser a data atual ou outra data específica)
-        const startDate = new Date("2024-10-26T23:40:00"); // Ajuste para a data inicial desejada
+        // --- INÍCIO DA SIMULAÇÃO DA APRESENTAÇÃO DE DADOS --- //
 
-        // Função de atualização do contador para contar para cima
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - startDate; // Tempo decorrido desde a data de início
+            // Inicialização do contador
+            const startDate = new Date("2024-10-26T23:40:00");
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            // Função de atualização do contador para contar para cima
+            function updateCounter() {
+                const now = new Date();
+                const diff = now - startDate; // Tempo decorrido desde a data de início
 
-            document.getElementById('days').innerText = days.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
-        }
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            }
+            // Atualiza o contador a cada segundo
+            setInterval(updateCounter, 1000);
+
+            // Dados de temperatura e umidade
+            let temperature = 16;
+            let humidity = 30;
+
+            // Alertas
+            function updateAlert() {
+                const verde = document.getElementById('verde');
+                const amarelo = document.getElementById('amarelo');
+                const vermelho = document.getElementById('vermelho');
         
-        // Atualiza o contador a cada segundo
-        setInterval(updateCounter, 1000);
-        // Dados de temperatura e umidade
-        let temperature = 16;
-        let humidity = 30;
-
-        function updateAlert() {
-            const verde = document.getElementById('alerta-verde');
-            const amarelo = document.getElementById('alerta-amarelo');
-            const vermelho = document.getElementById('alerta-vermelho');
+                // Esconder todos os alertas inicialmente
+                verde.style.display = 'none';
+                amarelo.style.display = 'none';
+                vermelho.style.display = 'none';
         
-            // Esconder todos os alertas inicialmente
-            verde.style.display = 'none';
-            amarelo.style.display = 'none';
-            vermelho.style.display = 'none';
+                // Determinar qual alerta exibir
+                if (temperature < 18 && humidity < 50) {
+                    verde.style.display = 'block';
+                } else if ((temperature >= 18 && temperature < 24) || (humidity >= 50 && humidity < 70)) {
+                    amarelo.style.display = 'block';
+                } else {
+                    vermelho.style.display = 'block';
+                }
         
-            // Determinar qual alerta exibir
-            if (temperature < 18 && humidity < 50) {
-                verde.style.display = 'block';
-            } else if ((temperature >= 18 && temperature < 24) || (humidity >= 50 && humidity < 70)) {
-                amarelo.style.display = 'block';
-            } else {
-                vermelho.style.display = 'block';
+                // Atualizar exibição de temperatura e umidade
+                document.getElementById('tempDisplay').innerHTML = `${temperature}°C<br>Temperatura`;
+                document.getElementById('humidityDisplay').innerHTML = `${humidity}%<br>Umidade`;
             }
         
-            // Atualizar exibição de temperatura e umidade
-            document.getElementById('tempDisplay').innerHTML = `${temperature}°C<br>Temperatura`;
-            document.getElementById('humidityDisplay').innerHTML = `${humidity}%<br>Umidade`;
-        }
-        
-
-        // Configuração do gráfico usando Chart.js
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Temperatura', 'Umidade'],
-                datasets: [{
-                    data: [temperature, humidity],
-                    backgroundColor: ['#F5E2D7', '#8C0707'],
-                    hoverBackgroundColor: ['#F5E2D7', '#8C0707']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false }
+            // Configuração do gráfico usando Chart.js
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Temperatura', 'Umidade'],
+                    datasets: [{
+                        data: [temperature, humidity],
+                        backgroundColor: ['#F5E2D7', '#8C0707'],
+                        hoverBackgroundColor: ['#F5E2D7', '#8C0707']
+                    }]
                 },
-                cutout: '70%'
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            // Simulação de atualização de dados
+            function simulateDataUpdate() {
+                temperature = Math.floor(Math.random() * 30);
+                humidity = Math.floor(Math.random() * 100);
+
+                // Atualizar o gráfico
+                myChart.data.datasets[0].data = [temperature, humidity];
+                myChart.update();
+
+                // Atualizar o alerta
+                updateAlert();
             }
-        });
 
-        // Simulação de atualização de dados
-        function simulateDataUpdate() {
-            temperature = Math.floor(Math.random() * 30);
-            humidity = Math.floor(Math.random() * 100);
+            // Atualizar dados a cada 5 segundos
+            setInterval(simulateDataUpdate, 5000);
+        // --- FIM DA SIMULAÇÃO DA APRESENTAÇÃO DE DADOS --- //
 
-            // Atualizar o gráfico
-            myChart.data.datasets[0].data = [temperature, humidity];
-            myChart.update();
+        // ------------------------------------------------ //
 
-            // Atualizar o alerta
-            updateAlert();
+        // --- INÍCIO DO SCRIPT PEGANDO OS DADOS DA API DO ARDUINO --- //
+
+        // Função assíncrona para buscar dados das máquinas na API
+    async function fetchMachines() {
+        try {
+            // Faz uma solicitação GET à API do localhost
+            const response = await fetch("http://localhost:3000/maquinas");
+            
+            // Converte a resposta da API em um objeto JSON
+            const machines = await response.json();
+
+            // Seleciona o elemento HTML com o ID "machines" para exibir os dados
+            const container = document.getElementById("machines");
+            
+            // Limpa o conteúdo atual do contêiner antes de adicionar os dados
+            container.innerHTML = "";
+
+            // Itera sobre a lista de máquinas retornada pela API
+            machines.forEach(machine => {
+                // Cria um elemento div para representar cada máquina
+                const div = document.createElement("div");
+                div.className = "machine"; // Adiciona a classe "machine" ao elemento
+
+                // Define o conteúdo HTML da div, incluindo ID, temperatura e umidade
+                div.innerHTML = `
+                    <h2>Máquina ${machine.id}</h2>
+                    <p>Temperatura: ${machine.temperatura} °C</p>
+                    <p>Umidade: ${machine.umidade} %</p>
+                `;
+
+                // Adiciona a div criada ao contêiner principal
+                container.appendChild(div);
+            });
+        } catch (error) {
+            // Caso ocorra algum erro ao buscar os dados, exibe uma mensagem no console
+            console.error("Erro ao buscar dados:", error);
         }
+    }
 
-        // Atualizar dados a cada 5 segundos
-        setInterval(simulateDataUpdate, 5000);
+    // Define um intervalo de tempo para atualizar os dados a cada 10 segundos
+    setInterval(fetchMachines, 10000);
+    
+    // Chama a função pela primeira vez ao carregar a página
+    fetchMachines();
+        // --- FIM DO SCRIPT PEGANDO OS DADOS DA API DO ARDUINO --- //
+
+       
     </script>
 </body>
 </html>
